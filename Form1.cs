@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -90,7 +91,28 @@ namespace Graphics_Render
             }
         }
 
-        
+        struct stLine
+        {
+            public int p1, p2;
+
+            public stLine(Graphics g,Pen pen,int p1,int p2)
+            {
+                this.p1 = p1;
+                this.p2 = p2;
+                _g = g;
+                _pen = pen;
+            }
+
+            public void draw(stPoint p1,stPoint p2)
+            {
+
+                _g.DrawLine(_pen, p1.x, p1.y, p2.x, p2.y);
+                
+            }
+
+            private Graphics _g;
+            private Pen _pen;
+        }
 
         struct stShap
         {
@@ -98,9 +120,11 @@ namespace Graphics_Render
             
 
             public List<stPoint> points;
+            public List<stLine> lines;
 
             public stShap(Graphics g,Pen pen)
             {
+                lines = new List<stLine>();
                 points = new List<stPoint>();
                 _g = g;
                 _pen = pen;
@@ -108,12 +132,26 @@ namespace Graphics_Render
 
             public void draw()
             {
-                for (int i = 0;i < points.Count; i++)
+                // Drawing Lines;
+
+                for(int i = 0; i < lines.Count; i++)
                 {
-                    _g.DrawRectangle(_pen, points[i].x, points[i].y, 1, 1);
+                    lines[i].draw(points[lines[i].p1], points[lines[i].p2]);
                 }
+
+                // Drawing Points
+                //for (int i = 0;i < points.Count; i++)
+                //{
+                //    _g.DrawRectangle(_pen, points[i].x, points[i].y, 1, 1);
+                //}
             }
 
+            public void link(int point_1_index, int point_2_index)
+            {
+
+                lines.Add(new stLine(_g, _pen, point_1_index, point_2_index));
+
+            }
             public void rotate(stPoint origin,float angleOX,float angleOY,float angleOZ)
             {
                 for (int i = 0; i < points.Count; i++)
@@ -166,21 +204,7 @@ namespace Graphics_Render
             app.pen = new Pen(Color.White, 3);
             app.background = new Pen(Color.Black, 3);
 
-            Cube = new stShap(app.gfx, app.pen);
-            float cube_size = 100;
-            stPoint pos = new stPoint(100, 100, 0);
-            Cube.rotate(new stPoint(150, 150, 50),0.2f,0.2f,0.2f);
-
-            Cube.points.Add(new stPoint(pos.x, pos.y, pos.z));
-            Cube.points.Add(new stPoint(pos.x + cube_size, pos.y, pos.z));
-            Cube.points.Add(new stPoint(pos.x, pos.y + cube_size, pos.z));
-            Cube.points.Add(new stPoint(pos.x + cube_size, pos.y + cube_size, pos.z));
-
-
-            Cube.points.Add(new stPoint(pos.x, pos.y, pos.z + cube_size));
-            Cube.points.Add(new stPoint(pos.x + cube_size, pos.y, pos.z + cube_size));
-            Cube.points.Add(new stPoint(pos.x, pos.y + cube_size, pos.z + cube_size));
-            Cube.points.Add(new stPoint(pos.x + cube_size, pos.y + cube_size, pos.z + cube_size));
+            Cube = CreateCube(new stPoint(100,100,100),100);
 
             app.gfx.Clear(Color.Black);
             app.clear();
@@ -196,11 +220,11 @@ namespace Graphics_Render
         private void Fram_Tick(object sender, EventArgs e)
         {
             counter++;
-            Cube.rotate(new stPoint(150, 150, 50), 0.01f, -0.01f, 0.005f);
-            //Cube.move(1, 1, 1);
+            Cube.rotate(new stPoint(150, 150, 150), 0.01f, -0.01f, 0.005f);
+          //  Cube.move(1, 1, 1);
             app.clear();
             Cube.draw();
-           // label2.Text = string.Format( "x = {0}, y = {1}", Cube.points[0].x, Cube.points[0].y);
+            label2.Text = string.Format( "x = {0}, y = {1}", Cube.points[0].x, Cube.points[0].y);
             //label1.Text = counter.ToString();
 
             pb_drawing.Image = app.screen;
@@ -221,6 +245,21 @@ namespace Graphics_Render
             Cube.points.Add(new stPoint(pos.x + cube_size, pos.y, pos.z + cube_size));
             Cube.points.Add(new stPoint(pos.x, pos.y + cube_size, pos.z + cube_size));
             Cube.points.Add(new stPoint(pos.x + cube_size, pos.y + cube_size, pos.z + cube_size));
+
+            Cube.link(0, 1);
+            Cube.link(2, 3);
+            Cube.link(0, 2);
+            Cube.link(1, 3);
+
+            Cube.link(0 + 4, 1 + 4);
+            Cube.link(2 + 4, 3 + 4);
+            Cube.link(0 + 4, 2 + 4);
+            Cube.link(1 + 4, 3 + 4);
+
+            Cube.link(0, 4);
+            Cube.link(1, 5);
+            Cube.link(2, 6);
+            Cube.link(3, 7);
 
             return Cube;
         }

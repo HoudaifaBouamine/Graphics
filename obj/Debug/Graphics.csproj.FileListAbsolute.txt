@@ -9,3 +9,14 @@ C:\Users\admin\Desktop\Graphics\obj\Debug\Graphics.csproj.CoreCompileInputs.cach
 C:\Users\admin\Desktop\Graphics\obj\Debug\Graphics.exe
 C:\Users\admin\Desktop\Graphics\obj\Debug\Graphics.pdb
 C:\Users\admin\Desktop\Graphics\obj\Debug\Graphics_Render.frm_Screen.resources
+C:\Users\admin\Desktop\Graphics Engine\Graphics\bin\Debug\Graphics.exe.config
+C:\Users\admin\Desktop\Graphics Engine\Graphics\bin\Debug\Graphics.exe
+C:\Users\admin\Desktop\Graphics Engine\Graphics\bin\Debug\Graphics.pdb
+C:\Users\admin\Desktop\Graphics Engine\Graphics\obj\Debug\Graphics.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\Graphics Engine\Graphics\obj\Debug\Graphics.csproj.SuggestedBindingRedirects.cache
+C:\Users\admin\Desktop\Graphics Engine\Graphics\obj\Debug\Graphics_Render.frm_Screen.resources
+C:\Users\admin\Desktop\Graphics Engine\Graphics\obj\Debug\Graphics.Properties.Resources.resources
+C:\Users\admin\Desktop\Graphics Engine\Graphics\obj\Debug\Graphics.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\Graphics Engine\Graphics\obj\Debug\Graphics.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\Graphics Engine\Graphics\obj\Debug\Graphics.exe
+C:\Users\admin\Desktop\Graphics Engine\Graphics\obj\Debug\Graphics.pdb
