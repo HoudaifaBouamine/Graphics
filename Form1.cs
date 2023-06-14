@@ -179,38 +179,52 @@ namespace Graphics_Render
             public Pen pen;
             public Pen background;
             public Bitmap screen;
-
+            public PictureBox pictureBox;
             public void clear()
             {
                 gfx.Clear(background.Color);
             }
 
+            public void draw()
+            {
+                pictureBox.Image = screen;
+
+                foreach(stShap shap in shaps)
+                {
+                    shap.draw();
+                }
+            }
+
+            public static  stApp initApp(PictureBox pictureBox)
+            {
+                
+                stApp app = new stApp();
+
+                app.pictureBox = pictureBox;
+                app.screen = new Bitmap(app.pictureBox.Width, app.pictureBox.Height);
+
+                app.gfx = Graphics.FromImage(app.screen);
+                app.gfx.FillRectangle(Brushes.Black, 0, 0, pictureBox.Width, pictureBox.Height);
+                app.pen = new Pen(Color.White, 3);
+                app.background = new Pen(Color.Black, 3);
+                app.shaps = new List<stShap>();
+
+                return app;
+            }
+
             public List<stShap> shaps;
+
+
         }
 
         stApp app;
-
-
-        stShap Cube;
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            app = new stApp();
+            app = stApp.initApp(pb_drawing);
 
-            app.screen = new Bitmap(pb_drawing.Width, pb_drawing.Height);
-
-            app.gfx = Graphics.FromImage(app.screen);
-            app.gfx.FillRectangle(Brushes.Black, 0, 0, pb_drawing.Width, pb_drawing.Height);
-            app.pen = new Pen(Color.White, 3);
-            app.background = new Pen(Color.Black, 3);
-
-            Cube = CreateCube(new stPoint(100,100,100),100);
-
-            app.gfx.Clear(Color.Black);
-            app.clear();
-            Cube.draw();
-
-            pb_drawing.Image = app.screen;
+            app.shaps.Add(CreateCube(new stPoint(100, 100, 100), 100));
+            app.shaps.Add(CreateCuboid(new stPoint(250, 300, 100), 100,50,30));
 
             Fram.Start();
 
@@ -219,16 +233,13 @@ namespace Graphics_Render
 
         private void Fram_Tick(object sender, EventArgs e)
         {
-            counter++;
-            Cube.rotate(new stPoint(150, 150, 150), 0.01f, -0.01f, 0.005f);
-          //  Cube.move(1, 1, 1);
             app.clear();
-            Cube.draw();
-            label2.Text = string.Format( "x = {0}, y = {1}", Cube.points[0].x, Cube.points[0].y);
-            //label1.Text = counter.ToString();
 
-            pb_drawing.Image = app.screen;
 
+            app.shaps[0].rotate(new stPoint(150, 150, 150), 0.01f, -0.01f, 0.005f);
+            app.shaps[1].rotate(new stPoint(270, 320, 130), 0.01f, 0.02f, 0.01f);
+
+            app.draw();
         }
 
         private stShap CreateCube (stPoint pos,float cube_size)
@@ -264,11 +275,43 @@ namespace Graphics_Render
             return Cube;
         }
 
-   
+        private stShap CreateCuboid(stPoint pos, float width,float hight,float depth)
+        {
+            stShap Cube = new stShap(app.gfx, app.pen);
+
+            Cube.points.Add(new stPoint(pos.x, pos.y, pos.z));
+            Cube.points.Add(new stPoint(pos.x + width, pos.y, pos.z));
+            Cube.points.Add(new stPoint(pos.x, pos.y + hight, pos.z));
+            Cube.points.Add(new stPoint(pos.x + width, pos.y + hight, pos.z));
+
+
+            Cube.points.Add(new stPoint(pos.x, pos.y, pos.z + depth));
+            Cube.points.Add(new stPoint(pos.x + width, pos.y, pos.z + depth));
+            Cube.points.Add(new stPoint(pos.x, pos.y + hight, pos.z + depth));
+            Cube.points.Add(new stPoint(pos.x + width, pos.y + hight, pos.z + depth));
+
+            Cube.link(0, 1);
+            Cube.link(2, 3);
+            Cube.link(0, 2);
+            Cube.link(1, 3);
+
+            Cube.link(0 + 4, 1 + 4);
+            Cube.link(2 + 4, 3 + 4);
+            Cube.link(0 + 4, 2 + 4);
+            Cube.link(1 + 4, 3 + 4);
+
+            Cube.link(0, 4);
+            Cube.link(1, 5);
+            Cube.link(2, 6);
+            Cube.link(3, 7);
+
+            return Cube;
+        }
+
+
 
         private void pb_draw_MouseMove(object sender, MouseEventArgs e)
         {
-            lbl_MousePos.Text = string.Format( "[{0},{1}]",e.Location.X,e.Location.Y );
         }
     }
 }
