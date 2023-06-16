@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Graphics_Render
+namespace Graphics_Engine
 {
     internal static class Program
     {
@@ -13,10 +13,22 @@ namespace Graphics_Render
         /// </summary>
         [STAThread]
         static void Main()
+
+            
         {
+
+            if(Environment.OSVersion.Version.Major >= 6)
+            {
+                SetProcessDPIAware();
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_Screen());
+            Application.Run(new frm_Main());
         }
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+
+        private static extern bool SetProcessDPIAware();
     }
 }
