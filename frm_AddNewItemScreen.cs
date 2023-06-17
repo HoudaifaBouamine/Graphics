@@ -50,7 +50,7 @@ namespace Graphics_Engine
 
                 clsShap new_Cuboid = clsShap.CreateCuboid(pos, size, update_args);
                 clsApp.app.shaps.Add(new_Cuboid);
-
+                clsApp.app.flags.Add_new_shap();
             }
 
         }

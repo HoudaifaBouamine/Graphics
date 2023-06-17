@@ -9,6 +9,6 @@ C:\Users\admin\Desktop\GraphicsEngine_Remake\Graphics_Engine\bin\Debug\Graphics_
 C:\Users\admin\Desktop\GraphicsEngine_Remake\Graphics_Engine\bin\Debug\Graphics_Engine.pdb
 C:\Users\admin\Desktop\GraphicsEngine_Remake\Graphics_Engine\obj\Debug\Graphics_Engine.exe
 C:\Users\admin\Desktop\GraphicsEngine_Remake\Graphics_Engine\obj\Debug\Graphics_Engine.pdb
-C:\Users\admin\Desktop\GraphicsEngine_Remake\Graphics_Engine\obj\Debug\Graphics_Engine.frmItemsMenu.resources
 C:\Users\admin\Desktop\GraphicsEngine_Remake\Graphics_Engine\obj\Debug\Graphics_Engine.frm_Screen.resources
 C:\Users\admin\Desktop\GraphicsEngine_Remake\Graphics_Engine\obj\Debug\Graphics_Engine.frm_AddNewCuboidScreen.resources
+C:\Users\admin\Desktop\GraphicsEngine_Remake\Graphics_Engine\obj\Debug\Graphics_Engine.frm_ItemsMenu.resources

@@ -19,6 +19,7 @@ namespace Graphics_Engine
         public Pen background;
         public Bitmap screen;
         public PictureBox pictureBox;
+        public clsFlags flags;
         public void clear()
         {
             gfx.Clear(background.Color);
@@ -42,6 +43,7 @@ namespace Graphics_Engine
             SCREEN_HEIGHT = pictureBox.Height;
             SCREEN_WIDTH = pictureBox.Width;
 
+            this.flags = new clsFlags();
             this.gfx = System.Drawing.Graphics.FromImage(this.screen);
             this.gfx.FillRectangle(Brushes.Black, 0, 0, pictureBox.Width, pictureBox.Height);
             this.pen = new Pen(Color.White, 3);

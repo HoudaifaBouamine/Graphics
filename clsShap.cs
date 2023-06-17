@@ -10,6 +10,8 @@ namespace Graphics_Engine
 {
     internal class clsShap
     {
+        public static int counter = 1;
+        public string name = "shap";
         public clsVector center;
         public List<clsVector> points;
         public List<clsLine> lines;
@@ -19,6 +21,7 @@ namespace Graphics_Engine
 
         public clsShap(System.Drawing.Graphics g, Pen pen, clsUpdate update_args)
         {
+            this.name = "shap" + Convert.ToString(counter++);
             this.lines = new List<clsLine>();
             this.points = new List<clsVector>();
             this.gfx = g;

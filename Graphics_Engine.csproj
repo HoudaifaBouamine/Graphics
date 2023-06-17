@@ -47,27 +47,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsApp.cs" />
+    <Compile Include="clsFlags.cs" />
     <Compile Include="clsLine.cs" />
     <Compile Include="clsVector.cs" />
     <Compile Include="clsShap.cs" />
     <Compile Include="clsUpdate.cs" />
-    <Compile Include="frmItemsMenu.cs">
+    <Compile Include="frm_ItemsMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmItemsMenu.Designer.cs">
-      <DependentUpon>frmItemsMenu.cs</DependentUpon>
+    <Compile Include="frm_ItemsMenu.Designer.cs">
+      <DependentUpon>frm_ItemsMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="frm_Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <Compile Include="frm_Main.Designer.cs">
+      <DependentUpon>frm_Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmScreen.cs">
+    <Compile Include="frm_Screen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmScreen.Designer.cs">
-      <DependentUpon>frmScreen.cs</DependentUpon>
+    <Compile Include="frm_Screen.Designer.cs">
+      <DependentUpon>frm_Screen.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_AddNewItemScreen.cs">
       <SubType>Form</SubType>
@@ -77,14 +78,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmItemsMenu.resx">
-      <DependentUpon>frmItemsMenu.cs</DependentUpon>
+    <EmbeddedResource Include="frm_ItemsMenu.resx">
+      <DependentUpon>frm_ItemsMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <EmbeddedResource Include="frm_Main.resx">
+      <DependentUpon>frm_Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmScreen.resx">
-      <DependentUpon>frmScreen.cs</DependentUpon>
+    <EmbeddedResource Include="frm_Screen.resx">
+      <DependentUpon>frm_Screen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_AddNewItemScreen.resx">
       <DependentUpon>frm_AddNewItemScreen.cs</DependentUpon>
