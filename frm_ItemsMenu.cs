@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
@@ -18,13 +19,20 @@ namespace Graphics_Engine
             InitializeComponent();
         }
 
-        
+     
 
         private void frmItemsMenu_Load(object sender, EventArgs e)
         {
-            this.Location = new Point(this.Owner.Location.X + this.Owner.Size.Width, 0);
+            this.Location = new Point(Screen.FromControl(this).Bounds.Width-this.Size.Width, 0);
 
-           // tv_Items.Nodes.Add(frm_Main.Screen.Text);
+            for (int i = 0;i < clsApp.app.shaps.Count; i++)
+            {
+                AddShapToTreeView(clsApp.app.shaps[i]);
+
+
+            }
+
+            UpdateList.Start();
         }
 
 
@@ -90,11 +98,6 @@ namespace Graphics_Engine
         {
 
 
-            if (clsApp.app.flags.new_shap_to_tree_view)
-            {
-                AddShapToTreeView(clsApp.app.shaps[clsApp.app.shaps.Count - 1]);
-                clsApp.app.flags.new_shap_to_tree_view = false;
-            }
 
             for (int j = 0 ; j < tv_Items.Nodes.Count;j++)
             {
@@ -119,5 +122,55 @@ namespace Graphics_Engine
             }
         }
 
+        int counter = 0;
+        private void UpdateList_Tick(object sender, EventArgs e)
+        {
+            counter++;
+            
+                if (clsApp.app.flags.new_shap_to_tree_view)
+                {
+                    AddShapToTreeView(clsApp.app.shaps[clsApp.app.shaps.Count - 1]);
+                    clsApp.app.flags.new_shap_to_tree_view = false;
+                };
+            
+                for (int j = 0; j < tv_Items.Nodes.Count; j++)
+                {
+                    if (tv_Items.Nodes[j].IsSelected) {
+
+
+                        clsShap shap = clsApp.app.shaps[j];
+                        tv_Items.Nodes[j].Text = shap.name;
+
+
+                        tv_Items.Nodes[j].Nodes[0].Text = "Center " + " {" + shap.center.x.ToString() + " ," + shap.center.y.ToString() + " ," + shap.center.z.ToString() + " }";
+                        tv_Items.Nodes[j].Nodes[0].Nodes[0].Text = "X = " + shap.center.x.ToString();
+                        tv_Items.Nodes[j].Nodes[0].Nodes[1].Text = "Y = " + shap.center.y.ToString();
+                        tv_Items.Nodes[j].Nodes[0].Nodes[2].Text = "Z = " + shap.center.z.ToString();
+
+                        for (int i = 0; i < shap.points.Count; i++)
+                        {
+
+                            tv_Items.Nodes[j].Nodes[i + 1].Text = "Point " + Convert.ToString(i + 1) + " {" + ((int)shap.points[i].x).ToString() + " ," + ((int)shap.points[i].y).ToString() + " ," + ((int)shap.points[i].z).ToString() + " }";
+                            tv_Items.Nodes[j].Nodes[i + 1].Nodes[0].Text = "X = " + shap.points[i].x.ToString();
+                            tv_Items.Nodes[j].Nodes[i + 1].Nodes[1].Text = "Y = " + shap.points[i].y.ToString();
+                            tv_Items.Nodes[j].Nodes[i + 1].Nodes[2].Text = "Z = " + shap.points[i].z.ToString();
+
+                        }
+
+                    }
+                }
+            
+            
+        }
+
+        private void frm_ItemsMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            UpdateList.Stop();
+        }
+
+        private void tv_Items_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
     }
 }

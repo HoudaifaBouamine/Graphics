@@ -43,7 +43,7 @@
             this.pb_Screen.Location = new System.Drawing.Point(0, 0);
             this.pb_Screen.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.pb_Screen.Name = "pb_Screen";
-            this.pb_Screen.Size = new System.Drawing.Size(1092, 666);
+            this.pb_Screen.Size = new System.Drawing.Size(1080, 669);
             this.pb_Screen.TabIndex = 0;
             this.pb_Screen.TabStop = false;
             this.pb_Screen.Click += new System.EventHandler(this.pb_Screen_Click);
@@ -55,10 +55,12 @@
             // 
             // btn_AddNewItem
             // 
+            this.btn_AddNewItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_AddNewItem.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btn_AddNewItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_AddNewItem.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_AddNewItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_AddNewItem.Location = new System.Drawing.Point(889, 14);
+            this.btn_AddNewItem.Location = new System.Drawing.Point(877, 14);
             this.btn_AddNewItem.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btn_AddNewItem.Name = "btn_AddNewItem";
             this.btn_AddNewItem.Size = new System.Drawing.Size(188, 56);
@@ -71,7 +73,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1092, 666);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ClientSize = new System.Drawing.Size(1080, 669);
             this.Controls.Add(this.btn_AddNewItem);
             this.Controls.Add(this.pb_Screen);
             this.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -88,7 +91,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pb_Screen;
-        private System.Windows.Forms.Timer Fram;
         private System.Windows.Forms.Button btn_AddNewItem;
+        public System.Windows.Forms.Timer Fram;
     }
 }

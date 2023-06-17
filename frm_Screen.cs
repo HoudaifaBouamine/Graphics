@@ -21,7 +21,6 @@ namespace Graphics_Engine
 
         private void frmScreen_Load(object sender, EventArgs e)
         {
-
             this.Location = new Point(0, 0);
             clsApp.app = new clsApp(pb_Screen);
             Fram.Start();
@@ -34,9 +33,6 @@ namespace Graphics_Engine
             clsApp.app.clear();
             clsApp.app.update();
             clsApp.app.draw();
-
-            if(frmItemMenu1!=null)
-                frmItemMenu1.updateTreeView();
         }
 
         private void pb_Screen_Click(object sender, EventArgs e)
@@ -48,7 +44,9 @@ namespace Graphics_Engine
         private void btn_AddNewItem_Click(object sender, EventArgs e)
         {
             frmItemMenu1 = new frm_ItemsMenu();
-            frmItemMenu1.Show(this);
+            frmItemMenu1.ShowDialog(this);
         }
+
+
     }
 }
